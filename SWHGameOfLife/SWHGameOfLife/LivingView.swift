@@ -11,17 +11,22 @@ import UIKit
 
 enum LivingViewState {
     case Alive, Dead
+    
+    static func randomCellState() -> LivingViewState {
+        let randomNumber = arc4random_uniform(1)
+        if randomNumber == 0 {
+            return .Alive
+        } else {
+            return .Dead
+        }
+    }
 }
 
 class LivingView: UIView {
     
     var currentLivingViewState: LivingViewState = .Dead {
         didSet {
-            if currentLivingViewState == .Alive {
-                backgroundColor = UIColor.whiteColor()
-            } else {
-                backgroundColor = UIColor.clearColor()
-            }
+            backgroundColor = currentLivingViewState == .Alive ? UIColor.whiteColor() : UIColor.clearColor()
         }
     }
     

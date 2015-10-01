@@ -9,6 +9,14 @@
 import UIKit
 
 class GameOfLifeVC: UIViewController {
+    
+    var livingCells = Array<Array<LivingView>>()
+    
+    /// number of flys per row
+    static let NumberOfCellsPerRow = 10
+    
+    /// size of each fly
+    static let CellHeight = (300 / CGFloat(GameOfLifeVC.NumberOfCellsPerRow))
 
     @IBOutlet weak var gameBoard: UIView! {
         didSet {
@@ -20,6 +28,8 @@ class GameOfLifeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        buildGird()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,5 +38,31 @@ class GameOfLifeVC: UIViewController {
     }
 
 
+}
+
+extension GameOfLifeVC {
+    
+    func buildGird() {
+        var startOriginX: CGFloat = 0.0
+        var startOriginY: CGFloat = 0.0
+        
+        let cellHeight = GameOfLifeVC.CellHeight
+        
+        for var y = 0; y < GameOfLifeVC.NumberOfCellsPerRow; y++ {
+            livingCells.append([LivingView]())
+            for var x = 0; x < GameOfLifeVC.NumberOfCellsPerRow; x++ {
+                let newCell = LivingView(frame: CGRectMake(startOriginX, startOriginY, cellHeight, cellHeight))
+                gameBoard.addSubview(newCell)
+                newCell.configure(LivingViewState.randomCellState())
+                startOriginX += cellHeight
+                livingCells[y].append(newCell)
+            }
+            
+            startOriginX = 0
+            startOriginY += cellHeight
+            
+        }
+        
+    }
 }
 
