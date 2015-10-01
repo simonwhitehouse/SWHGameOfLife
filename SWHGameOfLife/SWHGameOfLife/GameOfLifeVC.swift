@@ -8,8 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GameOfLifeVC: UIViewController {
 
+    @IBOutlet weak var gameBoard: UIView! {
+        didSet {
+            gameBoard.layer.borderColor = UIColor.whiteColor().CGColor
+            gameBoard.layer.borderWidth = 2
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Game Of LifeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameOfLifeVC" customModule="SWHGameOfLife" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,57 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etp-jN-jQT">
+                                <rect key="frame" x="0.0" y="500" width="600" height="100"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="aly-ZO-cAS"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game of life" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D73-5n-rMC">
+                                <rect key="frame" x="254" y="28" width="92" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0h-zA-uF4">
+                                <rect key="frame" x="0.0" y="56" width="600" height="436"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ses-ck-V3P">
+                                        <rect key="frame" x="150" y="68" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="aRI-C0-0nn"/>
+                                            <constraint firstAttribute="height" constant="300" id="sfU-Yz-bJ5"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ses-ck-V3P" firstAttribute="centerX" secondItem="E0h-zA-uF4" secondAttribute="centerX" id="aI6-Dz-ndM"/>
+                                    <constraint firstItem="Ses-ck-V3P" firstAttribute="centerY" secondItem="E0h-zA-uF4" secondAttribute="centerY" id="iir-9Z-kcO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E0h-zA-uF4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0jR-1k-hst"/>
+                            <constraint firstItem="D73-5n-rMC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8AW-Dx-Gi1"/>
+                            <constraint firstItem="E0h-zA-uF4" firstAttribute="top" secondItem="D73-5n-rMC" secondAttribute="bottom" constant="8" id="DYN-XL-g1o"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="etp-jN-jQT" secondAttribute="bottom" id="UMY-Wl-Aov"/>
+                            <constraint firstAttribute="trailing" secondItem="E0h-zA-uF4" secondAttribute="trailing" id="WoB-qc-7a6"/>
+                            <constraint firstItem="etp-jN-jQT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gt3-Nc-qEb"/>
+                            <constraint firstItem="D73-5n-rMC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="lA4-GP-nPj"/>
+                            <constraint firstItem="etp-jN-jQT" firstAttribute="top" secondItem="E0h-zA-uF4" secondAttribute="bottom" constant="8" id="n1m-iS-Tw3"/>
+                            <constraint firstAttribute="trailing" secondItem="etp-jN-jQT" secondAttribute="trailing" id="xZC-fq-rNc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gameBoard" destination="Ses-ck-V3P" id="HjE-2q-hpP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="280" y="335"/>
         </scene>
     </scenes>
 </document>
