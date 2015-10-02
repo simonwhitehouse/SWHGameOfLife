@@ -40,6 +40,25 @@ struct GameOfLideModel {
         gameOfLifeStateStack.append(livingCells) // initial state stack
     }
     
+    mutating func step() {
+        
+    }
+    
+    typealias NeighbourCellStates = (aliveNeightbours: Bool, deadNeighbours: Bool)
+    
+    func neighBouringCellStates(topLeftCell: LivingViewState?, topMiddleCell: LivingViewState?, topRightCell: LivingViewState?, leftCenter: LivingViewState?, rightCenter: LivingViewState?, bottomLeftCell: LivingViewState?, bottomMiddle: LivingViewState?, bottomRightCell: LivingViewState?) -> NeighbourCellStates {
+        
+        
+        for neighBour in [topLeftCell, topMiddleCell, topRightCell, leftCenter, rightCenter, bottomLeftCell, bottomMiddle, bottomRightCell] {
+            
+            
+            
+        }
+        
+        
+        return (true, false)
+    }
+    
 //    Any live cell with fewer than two live neighbours dies, as if caused by under-population.
 //    Any live cell with two or three live neighbours lives on to the next generation.
 //    Any live cell with more than three live neighbours dies, as if by over-population.
