@@ -13,7 +13,7 @@ class GameOfLifeVC: UIViewController {
     var livingCells = Array<Array<LivingView>>()
     
     /// number of flys per row
-    static let NumberOfCellsPerRow = 10
+    static let NumberOfCellsPerRow = 50
     
     /// size of each fly
     static let CellHeight = (300 / CGFloat(GameOfLifeVC.NumberOfCellsPerRow))
