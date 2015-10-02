@@ -13,8 +13,8 @@ enum LivingViewState {
     case Alive, Dead
     
     static func randomCellState() -> LivingViewState {
-        let randomNumber = arc4random_uniform(1)
-        if randomNumber == 0 {
+        let randomNumber = arc4random_uniform(2) == 1
+        if randomNumber {
             return .Alive
         } else {
             return .Dead

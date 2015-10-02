@@ -10,7 +10,11 @@ import UIKit
 
 class GameOfLifeVC: UIViewController {
     
-    var livingCells = Array<Array<LivingView>>()
+    
+    typealias GameBoardState = Array<Array<LivingView>>
+    var livingCells = GameBoardState()
+    
+    var gameOfLifeStateStack = [GameBoardState]()
     
     /// number of flys per row
     static let NumberOfCellsPerRow = 50
@@ -63,6 +67,7 @@ extension GameOfLifeVC {
             
         }
         
+        gameOfLifeStateStack.append(livingCells) // initial state stack
     }
 }
 
