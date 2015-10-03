@@ -47,6 +47,9 @@ class GameOfLifeVC: UIViewController {
         }
     }
 
+    @IBAction func stepButtonPressed(sender: UIButton) {
+        gameOfLife.step()
+    }
 
 }
 

@@ -40,16 +40,36 @@ struct GameOfLideModel {
         gameOfLifeStateStack.append(livingCells) // initial state stack
     }
     
+    //    Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+    //    Any live cell with two or three live neighbours lives on to the next generation.
+    //    Any live cell with more than three live neighbours dies, as if by over-population.
+    //    Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+    
     mutating func step() {
         var nextInteraction = livingCells
         
         for var y = 0; y < GameOfLifeVC.NumberOfCellsPerRow; y++ {
             for var x = 0; x < GameOfLifeVC.NumberOfCellsPerRow; x++ {
-                var cell = nextInteraction[y][x]
+                let cell = nextInteraction[y][x]
                 
-                var neighbourData = neighBouringCellStates(getCellNeighbours(livingCells, cell: cell, x: x, y: y))
+                let neighbourData = neighBouringCellStates(getCellNeighbours(livingCells, cell: cell, x: x, y: y))
+                
+                if neighbourData.aliveNeightbours < 2 {
+                    cell.currentLivingViewState = LivingViewState.Dead
+                } else if neighbourData.aliveNeightbours == 2 && neighbourData.aliveNeightbours == 3 {
+
+                } else if neighbourData.aliveNeightbours > 3 {
+                    cell.currentLivingViewState = LivingViewState.Dead
+                } else if neighbourData.aliveNeightbours == 3 {
+                    cell.currentLivingViewState = LivingViewState.Alive
+                }
+                
+                nextInteraction[y][x] = cell
             }
         }
+        
+        gameOfLifeStateStack.append(nextInteraction)
+        livingCells = nextInteraction
     }
     
     func getCellNeighbours(nextInteraction: GameBoardState, cell: LivingView, x: Int, y: Int) -> NeighbourCells {
@@ -71,7 +91,7 @@ struct GameOfLideModel {
             
             if x+1 < GameOfLifeVC.NumberOfCellsPerRow  {
                 let nextFly = nextInteraction[y-1][x+1]
-                topRightCell = cell.currentLivingViewState
+                topRightCell = nextFly.currentLivingViewState
             }
             
             let nextFly = nextInteraction[y-1][x]
@@ -131,4 +151,8 @@ struct GameOfLideModel {
         return (livingCount, deadCount)
     }
 
+    
+    
+    
+    
 }
