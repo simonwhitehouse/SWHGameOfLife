@@ -44,19 +44,26 @@ struct GameOfLideModel {
         
     }
     
-    typealias NeighbourCellStates = (aliveNeightbours: Bool, deadNeighbours: Bool)
+    typealias NeighbourCellStates = (aliveNeightbours: Int, deadNeighbours: Int)
     
     func neighBouringCellStates(topLeftCell: LivingViewState?, topMiddleCell: LivingViewState?, topRightCell: LivingViewState?, leftCenter: LivingViewState?, rightCenter: LivingViewState?, bottomLeftCell: LivingViewState?, bottomMiddle: LivingViewState?, bottomRightCell: LivingViewState?) -> NeighbourCellStates {
         
+        var livingCount: Int = 0
+        var deadCount: Int = 0
         
         for neighBour in [topLeftCell, topMiddleCell, topRightCell, leftCenter, rightCenter, bottomLeftCell, bottomMiddle, bottomRightCell] {
             
+            if neighBour == LivingViewState.Alive {
+                livingCount++
+            } else {
+                deadCount++
+            }
             
             
         }
         
         
-        return (true, false)
+        return (livingCount, deadCount)
     }
     
 //    Any live cell with fewer than two live neighbours dies, as if caused by under-population.
