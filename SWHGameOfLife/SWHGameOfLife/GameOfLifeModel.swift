@@ -47,7 +47,7 @@ struct GameOfLideModel {
             for var x = 0; x < GameOfLifeVC.NumberOfCellsPerRow; x++ {
                 var cell = nextInteraction[y][x]
                 
-                
+                var neighbourData = neighBouringCellStates(getCellNeighbours(livingCells, cell: cell, x: x, y: y))
             }
         }
     }
@@ -64,58 +64,47 @@ struct GameOfLideModel {
         
         if y > 0 {
             if x > 0 {
-                var cell = nextInteraction[y-1][x-1]
+                let cell = nextInteraction[y-1][x-1]
                 topLeftCell = cell.currentLivingViewState
             }
             
-//            let nextFly = flies[y-1][x]
-//            if nextFly.ellapsedTimer < SWHFireFlyViewController.SensitivePeriod {
-//                nextFly.resetTimer()
-//            }
-//            
-//            if x+1 <  SWHFireFlyViewController.NumberOfFlysPerRow  {
-//                let nextFly = flies[y-1][x+1]
-//                if nextFly.ellapsedTimer < SWHFireFlyViewController.SensitivePeriod {
-//                    nextFly.resetTimer()
-//                }
-//            }
+            
+            if x+1 < GameOfLifeVC.NumberOfCellsPerRow  {
+                let nextFly = nextInteraction[y-1][x+1]
+                topRightCell = cell.currentLivingViewState
+            }
+            
+            let nextFly = nextInteraction[y-1][x]
+            topMiddleCell = nextFly.currentLivingViewState
         }
         
-//        if y+1 < SWHFireFlyViewController.NumberOfFlysPerRow {
-//            
-//            if x+1 <  SWHFireFlyViewController.NumberOfFlysPerRow  {
-//                let nextFly = flies[y+1][x+1]
-//                if nextFly.ellapsedTimer < SWHFireFlyViewController.SensitivePeriod {
-//                    nextFly.resetTimer()
-//                }
-//            }
-//            
-//            let nextFly = flies[y+1][x]
-//            if nextFly.ellapsedTimer < SWHFireFlyViewController.SensitivePeriod {
-//                nextFly.resetTimer()
-//            }
-//            
-//            if x-1 > 0 {
-//                let nextFly = flies[y+1][x-1]
-//                if nextFly.ellapsedTimer < SWHFireFlyViewController.SensitivePeriod {
-//                    nextFly.resetTimer()
-//                }
-//            }
-//        }
-//        
-//        if x+1 < SWHFireFlyViewController.NumberOfFlysPerRow  {
-//            let nextFly = flies[y][x+1]
-//            if nextFly.ellapsedTimer < SWHFireFlyViewController.SensitivePeriod {
-//                nextFly.resetTimer()
-//            }
-//        }
-//        
-//        if x-1 > 0 {
-//            let nextFly = flies[y][x-1]
-//            if nextFly.ellapsedTimer < SWHFireFlyViewController.SensitivePeriod {
-//                nextFly.resetTimer()
-//            }
-//        }
+        
+        
+        if y+1 < GameOfLifeVC.NumberOfCellsPerRow {
+            
+            if x+1 <  GameOfLifeVC.NumberOfCellsPerRow  {
+                let nextFly = nextInteraction[y+1][x+1]
+                bottomRightCell = nextFly.currentLivingViewState
+            }
+            
+            let nextFly = nextInteraction[y+1][x]
+            bottomMiddle = nextFly.currentLivingViewState
+            
+            if x-1 > 0 {
+                let nextFly = nextInteraction[y+1][x-1]
+                bottomLeftCell = nextFly.currentLivingViewState
+            }
+        }
+
+        if x+1 < GameOfLifeVC.NumberOfCellsPerRow  {
+            let nextFly = nextInteraction[y][x+1]
+            rightCenter = nextFly.currentLivingViewState
+        }
+
+        if x-1 > 0 {
+            let nextFly = nextInteraction[y][x-1]
+            leftCenter = nextFly.currentLivingViewState
+        }
         
         return (topLeftCell, topMiddleCell, topRightCell, leftCenter, rightCenter, bottomLeftCell, bottomMiddle, bottomRightCell)
     }
@@ -141,13 +130,5 @@ struct GameOfLideModel {
         
         return (livingCount, deadCount)
     }
-    
-//    Any live cell with fewer than two live neighbours dies, as if caused by under-population.
-//    Any live cell with two or three live neighbours lives on to the next generation.
-//    Any live cell with more than three live neighbours dies, as if by over-population.
-//    Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-    
-    
-    
-    
+
 }
