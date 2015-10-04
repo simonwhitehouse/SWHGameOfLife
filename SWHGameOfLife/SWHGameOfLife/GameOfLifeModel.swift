@@ -80,6 +80,7 @@ struct GameOfLideModel {
         livingCells = nextInteraction
     }
     
+    // gets the number counts for a cells neighbours
     func getCellNeighbours(nextInteraction: GameBoardState, cell: LivingView, x: Int, y: Int) -> NeighbourCells {
         var topLeftCell: LivingViewState?
         var topMiddleCell: LivingViewState?
@@ -155,12 +156,7 @@ struct GameOfLideModel {
             }
         }
         
-        
+        // number of live cells and number of dead cells
         return (livingCount, deadCount)
     }
-
-    
-    
-    
-    
 }
