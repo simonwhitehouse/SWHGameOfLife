@@ -40,6 +40,14 @@ struct GameOfLideModel {
         gameOfLifeStateStack.append(livingCells) // initial state stack
     }
     
+    mutating func stepBack() {
+        
+        if gameOfLifeStateStack.count > 1 {
+            gameOfLifeStateStack.removeLast()
+            livingCells = gameOfLifeStateStack.last!
+        }
+    }
+    
     //    Any live cell with fewer than two live neighbours dies, as if caused by under-population.
     //    Any live cell with two or three live neighbours lives on to the next generation.
     //    Any live cell with more than three live neighbours dies, as if by over-population.

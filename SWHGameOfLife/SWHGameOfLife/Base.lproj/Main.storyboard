@@ -19,21 +19,50 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etp-jN-jQT">
                                 <rect key="frame" x="0.0" y="500" width="600" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyC-RX-loN">
-                                        <rect key="frame" x="8" y="8" width="46" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyC-RX-loN">
+                                        <rect key="frame" x="8" y="8" width="129" height="30"/>
                                         <animations/>
-                                        <state key="normal" title="Step">
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="129" id="EUj-2s-Rlc"/>
+                                            <constraint firstAttribute="width" constant="129" id="USs-DD-RwU"/>
+                                            <constraint firstAttribute="height" constant="30" id="aVW-Wg-jWM"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="lQH-yU-CNd"/>
+                                        </constraints>
+                                        <state key="normal" title="Step Forward">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="stepButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bjc-3o-WT2"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6S-vY-aen">
+                                        <rect key="frame" x="8" y="35" width="129" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Lcr-io-pjg"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Tuc-gw-bcN"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="129" id="i7S-90-9S2"/>
+                                            <constraint firstAttribute="width" constant="129" id="z26-t4-c4w"/>
+                                        </constraints>
+                                        <state key="normal" title="Step Backwards">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stepBackButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J2m-ce-2bV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="vyC-RX-loN" firstAttribute="leading" secondItem="etp-jN-jQT" secondAttribute="leading" constant="8" id="EGY-M1-OkV"/>
+                                    <constraint firstItem="vyC-RX-loN" firstAttribute="leading" secondItem="etp-jN-jQT" secondAttribute="leading" constant="8" id="JN1-IZ-dod"/>
+                                    <constraint firstItem="y6S-vY-aen" firstAttribute="leading" secondItem="etp-jN-jQT" secondAttribute="leading" constant="8" id="QjL-qD-b9y"/>
+                                    <constraint firstItem="y6S-vY-aen" firstAttribute="leading" secondItem="etp-jN-jQT" secondAttribute="leading" constant="8" id="VcD-BW-DzP"/>
                                     <constraint firstAttribute="height" constant="100" id="aly-ZO-cAS"/>
+                                    <constraint firstItem="y6S-vY-aen" firstAttribute="top" secondItem="etp-jN-jQT" secondAttribute="top" constant="35" id="cL5-SX-xXg"/>
+                                    <constraint firstItem="vyC-RX-loN" firstAttribute="top" secondItem="etp-jN-jQT" secondAttribute="top" constant="8" id="pLV-w2-Dli"/>
+                                    <constraint firstItem="vyC-RX-loN" firstAttribute="top" secondItem="etp-jN-jQT" secondAttribute="top" constant="8" id="xDK-Ey-aIp"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conway's Game Of Life" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D73-5n-rMC">

@@ -51,6 +51,9 @@ class GameOfLifeVC: UIViewController {
         gameOfLife.step()
     }
 
+    @IBAction func stepBackButtonPressed(sender: UIButton) {
+        gameOfLife.stepBack()
+    }
 }
 
 extension GameOfLifeVC {
