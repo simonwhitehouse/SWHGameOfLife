@@ -26,6 +26,7 @@ class GameOfLifeVC: UIViewController {
         }
     }
     
+    /// View controller life cylce methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,13 +34,14 @@ class GameOfLifeVC: UIViewController {
         gameOfLife.buildGird()
         showCells()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    // shows the cells
     func showCells() {
+        
+        for v in gameBoard.subviews {
+            v.removeFromSuperview()
+        }
+        
         for row in gameOfLife.livingCells {
             for cell in row {
                 gameBoard.addSubview(cell)
@@ -53,6 +55,7 @@ class GameOfLifeVC: UIViewController {
 
     @IBAction func stepBackButtonPressed(sender: UIButton) {
         gameOfLife.stepBack()
+        showCells()
     }
 }
 
