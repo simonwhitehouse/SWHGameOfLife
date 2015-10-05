@@ -51,10 +51,30 @@
                                             <action selector="stepBackButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J2m-ce-2bV"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAQ-n6-m9J">
+                                        <rect key="frame" x="8" y="62" width="129" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="1zl-wB-R71"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="129" id="33u-IR-Z3l"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="129" id="JLv-et-FjN"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="nEF-QR-MZ9"/>
+                                            <constraint firstAttribute="height" constant="30" id="pKF-G3-sx4"/>
+                                            <constraint firstAttribute="width" constant="129" id="qdI-Jo-Rtj"/>
+                                        </constraints>
+                                        <state key="normal" title="New Board">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clearGameBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bvy-YV-2cT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="XAQ-n6-m9J" firstAttribute="top" secondItem="vyC-RX-loN" secondAttribute="bottom" constant="24" id="7oZ-HX-VLe"/>
+                                    <constraint firstItem="XAQ-n6-m9J" firstAttribute="leading" secondItem="etp-jN-jQT" secondAttribute="leading" constant="8" id="DGQ-il-5ur"/>
                                     <constraint firstItem="vyC-RX-loN" firstAttribute="leading" secondItem="etp-jN-jQT" secondAttribute="leading" constant="8" id="EGY-M1-OkV"/>
                                     <constraint firstItem="vyC-RX-loN" firstAttribute="leading" secondItem="etp-jN-jQT" secondAttribute="leading" constant="8" id="JN1-IZ-dod"/>
                                     <constraint firstItem="y6S-vY-aen" firstAttribute="leading" secondItem="etp-jN-jQT" secondAttribute="leading" constant="8" id="QjL-qD-b9y"/>

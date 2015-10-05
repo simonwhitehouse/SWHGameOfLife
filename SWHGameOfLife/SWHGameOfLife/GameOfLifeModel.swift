@@ -54,6 +54,13 @@ struct GameOfLideModel {
     //    Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
     
     mutating func step() {
+        
+        
+        if gameOfLifeStateStack.count == 0 {
+            buildGird()
+            return
+        }
+        
         var nextInteraction = livingCells
         
         for var y = 0; y < GameOfLifeVC.NumberOfCellsPerRow; y++ {

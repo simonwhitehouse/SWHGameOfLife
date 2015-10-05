@@ -14,7 +14,7 @@ class GameOfLifeVC: UIViewController {
     var gameOfLife = GameOfLideModel()
     
     /// number of flys per row
-    static let NumberOfCellsPerRow = 50
+    static let NumberOfCellsPerRow = 10
     
     /// size of each fly
     static let CellHeight = (300 / CGFloat(GameOfLifeVC.NumberOfCellsPerRow))
@@ -51,12 +51,23 @@ class GameOfLifeVC: UIViewController {
 
     @IBAction func stepButtonPressed(sender: UIButton) {
         gameOfLife.step()
+        showCells()
     }
 
     @IBAction func stepBackButtonPressed(sender: UIButton) {
         gameOfLife.stepBack()
         showCells()
     }
+    
+    @IBAction func clearGameBoard(sender: UIButton) {
+        
+        for v in gameBoard.subviews {
+            v.removeFromSuperview()
+        }
+        
+        gameOfLife = GameOfLideModel()
+    }
+
 }
 
 extension GameOfLifeVC {
