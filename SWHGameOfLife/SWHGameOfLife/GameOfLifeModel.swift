@@ -11,12 +11,16 @@ import UIKit
 
 struct GameOfLideModel {
     
-    
+    /// type aliase for an array off array of living view state
     typealias GameBoardState = Array<Array<LivingViewState>>
+    
+    /// current game state at a position in time
     var livingCells = GameBoardState()
     
+    /// keeps track of the game over a period of time
     var gameOfLifeStateStack = [GameBoardState]()
     
+    /// build grid of random cell states
     mutating func buildGird() {
         for var y = 0; y < GameOfLifeVC.NumberOfCellsPerRow; y++ {
             livingCells.append([LivingViewState]())
@@ -28,8 +32,8 @@ struct GameOfLideModel {
         gameOfLifeStateStack.append(livingCells) // initial state stack
     }
     
+    /// steps back - pops off the stack and sets the next object
     mutating func stepBack() {
-        
         if gameOfLifeStateStack.count > 1 {
             gameOfLifeStateStack.removeLast()
             livingCells = gameOfLifeStateStack.last!
@@ -41,9 +45,10 @@ struct GameOfLideModel {
     //    Any live cell with more than three live neighbours dies, as if by over-population.
     //    Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
     
+    /// steps forward one step - creates a new grid if needed
     mutating func step() {
         
-        
+        /// checks if game of
         if gameOfLifeStateStack.count == 0 {
             buildGird()
             return
@@ -60,7 +65,7 @@ struct GameOfLideModel {
                 if neighbourData.aliveNeightbours < 2 {
                     cell = LivingViewState.Dead
                 } else if neighbourData.aliveNeightbours == 2 && neighbourData.aliveNeightbours == 3 {
-
+                    
                 } else if neighbourData.aliveNeightbours > 3 {
                     cell = LivingViewState.Dead
                 } else if neighbourData.aliveNeightbours == 3 {
@@ -102,8 +107,6 @@ struct GameOfLideModel {
             topMiddleCell = nextFly
         }
         
-        
-        
         if y+1 < GameOfLifeVC.NumberOfCellsPerRow {
             
             if x+1 <  GameOfLifeVC.NumberOfCellsPerRow  {
@@ -119,12 +122,12 @@ struct GameOfLideModel {
                 bottomLeftCell = nextFly
             }
         }
-
+        
         if x+1 < GameOfLifeVC.NumberOfCellsPerRow  {
             let nextFly = nextInteraction[y][x+1]
             rightCenter = nextFly
         }
-
+        
         if x-1 > 0 {
             let nextFly = nextInteraction[y][x-1]
             leftCenter = nextFly
@@ -134,9 +137,14 @@ struct GameOfLideModel {
     }
     
     
+    /// type aliears for a list of cell states for all the surround cells of a central cell
     typealias NeighbourCells = (topLeftCell: LivingViewState?, topMiddleCell: LivingViewState?, topRightCell: LivingViewState?, leftCenter: LivingViewState?, rightCenter: LivingViewState?, bottomLeftCell: LivingViewState?, bottomMiddle: LivingViewState?, bottomRightCell: LivingViewState?)
+    
+    /// type allias for alive and dead cells
     typealias NeighbourCellStates = (aliveNeightbours: Int, deadNeighbours: Int)
     
+    
+    /// retruns the count of dead and alive cells
     func neighBouringCellStates(neighbours: NeighbourCells) -> NeighbourCellStates {
         
         var livingCount: Int = 0

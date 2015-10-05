@@ -48,7 +48,7 @@ class GameOfLifeVC: UIViewController {
         
         for row in gameOfLife.livingCells {
             gameCells.append([LivingView]())
-            for cell in row {
+            for _ in row {
                 let newCell = LivingView(frame: CGRectMake(startOriginX, startOriginY, cellHeight, cellHeight))
                 newCell.configure(LivingViewState.randomCellState())
                 startOriginX += cellHeight
@@ -62,21 +62,23 @@ class GameOfLifeVC: UIViewController {
         
     }
     
+    /// ensures the views match up to the state of the game of life game
     func updateView() {
         for var y = 0; y < GameOfLifeVC.NumberOfCellsPerRow; y++ {
             for var x = 0; x < GameOfLifeVC.NumberOfCellsPerRow; x++ {
-
-                var cellState = gameOfLife.livingCells[y][x]
+                let cellState = gameOfLife.livingCells[y][x]
                 gameCells[y][x].currentLivingViewState = cellState
             }
         }
     }
 
+    /// steps the game forwards - pushed on the stack
     @IBAction func stepButtonPressed(sender: UIButton) {
         gameOfLife.step()
         updateView()
     }
 
+    /// steps the game backwards - pops off the stack
     @IBAction func stepBackButtonPressed(sender: UIButton) {
         gameOfLife.stepBack()
         updateView()
