@@ -12,29 +12,17 @@ import UIKit
 struct GameOfLideModel {
     
     
-    typealias GameBoardState = Array<Array<LivingView>>
+    typealias GameBoardState = Array<Array<LivingViewState>>
     var livingCells = GameBoardState()
     
     var gameOfLifeStateStack = [GameBoardState]()
     
     mutating func buildGird() {
-        var startOriginX: CGFloat = 0.0
-        var startOriginY: CGFloat = 0.0
-        
-        let cellHeight = GameOfLifeVC.CellHeight
-        
         for var y = 0; y < GameOfLifeVC.NumberOfCellsPerRow; y++ {
-            livingCells.append([LivingView]())
+            livingCells.append([LivingViewState]())
             for var x = 0; x < GameOfLifeVC.NumberOfCellsPerRow; x++ {
-                let newCell = LivingView(frame: CGRectMake(startOriginX, startOriginY, cellHeight, cellHeight))
-                newCell.configure(LivingViewState.randomCellState())
-                startOriginX += cellHeight
-                livingCells[y].append(newCell)
+                livingCells[y].append(LivingViewState.randomCellState())
             }
-            
-            startOriginX = 0
-            startOriginY += cellHeight
-            
         }
         
         gameOfLifeStateStack.append(livingCells) // initial state stack
@@ -65,18 +53,18 @@ struct GameOfLideModel {
         
         for var y = 0; y < GameOfLifeVC.NumberOfCellsPerRow; y++ {
             for var x = 0; x < GameOfLifeVC.NumberOfCellsPerRow; x++ {
-                let cell = nextInteraction[y][x]
+                var cell = nextInteraction[y][x]
                 
-                let neighbourData = neighBouringCellStates(getCellNeighbours(livingCells, cell: cell, x: x, y: y))
+                let neighbourData = neighBouringCellStates(getCellNeighbours(livingCells, x: x, y: y))
                 
                 if neighbourData.aliveNeightbours < 2 {
-                    cell.currentLivingViewState = LivingViewState.Dead
+                    cell = LivingViewState.Dead
                 } else if neighbourData.aliveNeightbours == 2 && neighbourData.aliveNeightbours == 3 {
 
                 } else if neighbourData.aliveNeightbours > 3 {
-                    cell.currentLivingViewState = LivingViewState.Dead
+                    cell = LivingViewState.Dead
                 } else if neighbourData.aliveNeightbours == 3 {
-                    cell.currentLivingViewState = LivingViewState.Alive
+                    cell = LivingViewState.Alive
                 }
                 
                 nextInteraction[y][x] = cell
@@ -88,7 +76,7 @@ struct GameOfLideModel {
     }
     
     // gets the number counts for a cells neighbours
-    func getCellNeighbours(nextInteraction: GameBoardState, cell: LivingView, x: Int, y: Int) -> NeighbourCells {
+    func getCellNeighbours(nextInteraction: GameBoardState, x: Int, y: Int) -> NeighbourCells {
         var topLeftCell: LivingViewState?
         var topMiddleCell: LivingViewState?
         var topRightCell: LivingViewState?
@@ -101,17 +89,17 @@ struct GameOfLideModel {
         if y > 0 {
             if x > 0 {
                 let cell = nextInteraction[y-1][x-1]
-                topLeftCell = cell.currentLivingViewState
+                topLeftCell = cell
             }
             
             
             if x+1 < GameOfLifeVC.NumberOfCellsPerRow  {
                 let nextFly = nextInteraction[y-1][x+1]
-                topRightCell = nextFly.currentLivingViewState
+                topRightCell = nextFly
             }
             
             let nextFly = nextInteraction[y-1][x]
-            topMiddleCell = nextFly.currentLivingViewState
+            topMiddleCell = nextFly
         }
         
         
@@ -120,26 +108,26 @@ struct GameOfLideModel {
             
             if x+1 <  GameOfLifeVC.NumberOfCellsPerRow  {
                 let nextFly = nextInteraction[y+1][x+1]
-                bottomRightCell = nextFly.currentLivingViewState
+                bottomRightCell = nextFly
             }
             
             let nextFly = nextInteraction[y+1][x]
-            bottomMiddle = nextFly.currentLivingViewState
+            bottomMiddle = nextFly
             
             if x-1 > 0 {
                 let nextFly = nextInteraction[y+1][x-1]
-                bottomLeftCell = nextFly.currentLivingViewState
+                bottomLeftCell = nextFly
             }
         }
 
         if x+1 < GameOfLifeVC.NumberOfCellsPerRow  {
             let nextFly = nextInteraction[y][x+1]
-            rightCenter = nextFly.currentLivingViewState
+            rightCenter = nextFly
         }
 
         if x-1 > 0 {
             let nextFly = nextInteraction[y][x-1]
-            leftCenter = nextFly.currentLivingViewState
+            leftCenter = nextFly
         }
         
         return (topLeftCell, topMiddleCell, topRightCell, leftCenter, rightCenter, bottomLeftCell, bottomMiddle, bottomRightCell)

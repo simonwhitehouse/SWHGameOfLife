@@ -10,6 +10,8 @@ import UIKit
 
 class GameOfLifeVC: UIViewController {
     
+    typealias GameBoardViews = Array<Array<LivingView>>
+    var gameCells = GameBoardViews()
     
     var gameOfLife = GameOfLideModel()
     
@@ -37,26 +39,47 @@ class GameOfLifeVC: UIViewController {
     
     // shows the cells
     func showCells() {
+        var startOriginX: CGFloat = 0.0
+        var startOriginY: CGFloat = 0.0
         
-        for v in gameBoard.subviews {
-            v.removeFromSuperview()
-        }
+        let cellHeight = GameOfLifeVC.CellHeight
+        
+        var counter = 0
         
         for row in gameOfLife.livingCells {
+            gameCells.append([LivingView]())
             for cell in row {
-                gameBoard.addSubview(cell)
+                let newCell = LivingView(frame: CGRectMake(startOriginX, startOriginY, cellHeight, cellHeight))
+                newCell.configure(LivingViewState.randomCellState())
+                startOriginX += cellHeight
+                gameBoard.addSubview(newCell)
+                gameCells[counter].append(newCell)
+            }
+            counter++
+            startOriginX = 0
+            startOriginY += cellHeight
+        }
+        
+    }
+    
+    func updateView() {
+        for var y = 0; y < GameOfLifeVC.NumberOfCellsPerRow; y++ {
+            for var x = 0; x < GameOfLifeVC.NumberOfCellsPerRow; x++ {
+
+                var cellState = gameOfLife.livingCells[y][x]
+                gameCells[y][x].currentLivingViewState = cellState
             }
         }
     }
 
     @IBAction func stepButtonPressed(sender: UIButton) {
         gameOfLife.step()
-        showCells()
+        updateView()
     }
 
     @IBAction func stepBackButtonPressed(sender: UIButton) {
         gameOfLife.stepBack()
-        showCells()
+        updateView()
     }
     
     @IBAction func clearGameBoard(sender: UIButton) {
