@@ -79,6 +79,9 @@
                                         <state key="normal" title="Start">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="startButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qsg-im-Twm"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBZ-aZ-ogd">
                                         <rect key="frame" x="283" y="62" width="34" height="30"/>
@@ -87,9 +90,12 @@
                                             <constraint firstAttribute="height" constant="30" id="GT5-TR-1Ye"/>
                                             <constraint firstAttribute="width" constant="34" id="cmR-GL-7dT"/>
                                         </constraints>
-                                        <state key="normal" title="Start">
+                                        <state key="normal" title="Stop">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="stopButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7sm-yU-2IQ"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number Of steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RN-7v-oZZ">
                                         <rect key="frame" x="459" y="12" width="131" height="20.5"/>
@@ -99,11 +105,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sst-mV-nOo">
-                                        <rect key="frame" x="381" y="66" width="209" height="21"/>
+                                        <rect key="frame" x="579.5" y="66" width="10.5" height="21"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="EZu-0Z-5De"/>
-                                            <constraint firstAttribute="width" constant="209" id="b8j-ly-Y9f"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,6 +132,7 @@
                                     <constraint firstAttribute="trailing" secondItem="sst-mV-nOo" secondAttribute="trailing" constant="10" id="XcV-Hh-eQa"/>
                                     <constraint firstItem="rgM-Kb-NcQ" firstAttribute="top" secondItem="etp-jN-jQT" secondAttribute="top" constant="8" id="abS-NZ-k8N"/>
                                     <constraint firstAttribute="height" constant="100" id="aly-ZO-cAS"/>
+                                    <constraint firstItem="sst-mV-nOo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cBZ-aZ-ogd" secondAttribute="trailing" constant="8" id="bHe-ea-Tph"/>
                                     <constraint firstItem="cBZ-aZ-ogd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XAQ-n6-m9J" secondAttribute="trailing" id="c9t-WV-ONp"/>
                                     <constraint firstItem="y6S-vY-aen" firstAttribute="top" secondItem="etp-jN-jQT" secondAttribute="top" constant="35" id="cL5-SX-xXg"/>
                                     <constraint firstAttribute="trailing" secondItem="2RN-7v-oZZ" secondAttribute="trailing" constant="10" id="ckO-go-pee"/>
@@ -177,6 +183,7 @@
                     </view>
                     <connections>
                         <outlet property="gameBoard" destination="Ses-ck-V3P" id="HjE-2q-hpP"/>
+                        <outlet property="numberOfStepsCount" destination="sst-mV-nOo" id="wpe-Ru-hQ8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -86,13 +86,34 @@ class GameOfLifeVC: UIViewController {
     
     @IBAction func clearGameBoard(sender: UIButton) {
         
+        numberOfStepsCount.text = "0"
+        
         for v in gameBoard.subviews {
             v.removeFromSuperview()
         }
         
+        gameCells = GameBoardViews()
         gameOfLife = GameOfLideModel()
+        gameOfLife.buildGird()
+        showCells()
     }
 
+    @IBOutlet weak var numberOfStepsCount: UILabel!
+    @IBAction func startButtonPressed(sender: UIButton) {
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "timerTicked:", userInfo: nil, repeats: true)
+    }
+    
+    @IBAction func stopButtonPressed(sender: UIButton) {
+        timer?.invalidate()
+    }
+    
+    func timerTicked(timer: NSTimer) {
+        gameOfLife.step()
+        updateView()
+        numberOfStepsCount.text = "\(gameOfLife.gameOfLifeStateStack.count)"
+    }
+    
+    var timer: NSTimer?
 }
 
 extension GameOfLifeVC {
