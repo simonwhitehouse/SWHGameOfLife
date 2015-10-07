@@ -70,6 +70,8 @@ class GameOfLifeVC: UIViewController {
                 gameCells[y][x].currentLivingViewState = cellState
             }
         }
+        
+        numberOfStepsCount.text = "\(gameOfLife.gameOfLifeStateStack.count)"
     }
 
     /// steps the game forwards - pushed on the stack
@@ -84,6 +86,7 @@ class GameOfLifeVC: UIViewController {
         updateView()
     }
     
+    /// clear the game board and reset everything
     @IBAction func clearGameBoard(sender: UIButton) {
         
         numberOfStepsCount.text = "0"
@@ -98,7 +101,10 @@ class GameOfLifeVC: UIViewController {
         showCells()
     }
 
+    /// label that keeps track of number of steps
     @IBOutlet weak var numberOfStepsCount: UILabel!
+    
+    /// loops the step button from being called
     @IBAction func startButtonPressed(sender: UIButton) {
         timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "timerTicked:", userInfo: nil, repeats: true)
     }
@@ -108,9 +114,8 @@ class GameOfLifeVC: UIViewController {
     }
     
     func timerTicked(timer: NSTimer) {
-        gameOfLife.step()
-        updateView()
-        numberOfStepsCount.text = "\(gameOfLife.gameOfLifeStateStack.count)"
+        stepButtonPressed(UIButton())
+        
     }
     
     var timer: NSTimer?

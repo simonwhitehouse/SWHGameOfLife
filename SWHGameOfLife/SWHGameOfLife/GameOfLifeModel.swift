@@ -64,8 +64,8 @@ struct GameOfLideModel {
                 
                 if neighbourData.aliveNeightbours < 2 {
                     cell = LivingViewState.Dead
-                } else if neighbourData.aliveNeightbours == 2 && neighbourData.aliveNeightbours == 3 {
-                    
+                } else if neighbourData.aliveNeightbours == 2 && neighbourData.aliveNeightbours == 3 && cell == LivingViewState.Alive{
+                    cell = LivingViewState.Alive
                 } else if neighbourData.aliveNeightbours > 3 {
                     cell = LivingViewState.Dead
                 } else if neighbourData.aliveNeightbours == 3 {
