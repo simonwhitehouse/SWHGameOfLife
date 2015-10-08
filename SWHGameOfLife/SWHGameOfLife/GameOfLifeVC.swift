@@ -16,11 +16,12 @@ class GameOfLifeVC: UIViewController {
     var gameOfLife = GameOfLideModel()
     
     /// number of flys per row
-    static let NumberOfCellsPerRow = 10
+    static let NumberOfCellsPerRow = 100
     
     /// size of each fly
     static let CellHeight = (300 / CGFloat(GameOfLifeVC.NumberOfCellsPerRow))
 
+    /// UIView that contains the game board cells
     @IBOutlet weak var gameBoard: UIView! {
         didSet {
             gameBoard.layer.borderColor = UIColor.whiteColor().CGColor
@@ -41,11 +42,8 @@ class GameOfLifeVC: UIViewController {
     func showCells() {
         var startOriginX: CGFloat = 0.0
         var startOriginY: CGFloat = 0.0
-        
         let cellHeight = GameOfLifeVC.CellHeight
-        
         var counter = 0
-        
         for row in gameOfLife.livingCells {
             gameCells.append([LivingView]())
             for _ in row {
@@ -59,7 +57,6 @@ class GameOfLifeVC: UIViewController {
             startOriginX = 0
             startOriginY += cellHeight
         }
-        
     }
     
     /// ensures the views match up to the state of the game of life game
@@ -109,20 +106,22 @@ class GameOfLifeVC: UIViewController {
         timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "timerTicked:", userInfo: nil, repeats: true)
     }
     
+    /// stops the timer properperty by calling invalidate
     @IBAction func stopButtonPressed(sender: UIButton) {
         timer?.invalidate()
     }
     
-    func timerTicked(timer: NSTimer) {
-        stepButtonPressed(UIButton())
-        
-    }
-    
+    /// timer property
     var timer: NSTimer?
 }
 
-extension GameOfLifeVC {
+private typealias GameOfLifeVCTimer = GameOfLifeVC
+extension GameOfLifeVCTimer {
     
+    /// called every 0.25 seconds
+    func timerTicked(timer: NSTimer) {
+        stepButtonPressed(UIButton())
+    }
     
 }
 
