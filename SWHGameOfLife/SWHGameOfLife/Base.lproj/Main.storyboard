@@ -152,11 +152,11 @@
                                 <rect key="frame" x="0.0" y="56" width="600" height="436"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ses-ck-V3P">
-                                        <rect key="frame" x="150" y="68" width="300" height="300"/>
+                                        <rect key="frame" x="140" y="58" width="320" height="320"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="aRI-C0-0nn"/>
-                                            <constraint firstAttribute="height" constant="300" id="sfU-Yz-bJ5"/>
+                                            <constraint firstAttribute="width" constant="320" id="aRI-C0-0nn"/>
+                                            <constraint firstAttribute="height" constant="320" id="sfU-Yz-bJ5"/>
                                         </constraints>
                                     </view>
                                 </subviews>

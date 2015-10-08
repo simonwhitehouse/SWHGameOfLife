@@ -19,7 +19,7 @@ class GameOfLifeVC: UIViewController {
     static let NumberOfCellsPerRow = 100
     
     /// size of each fly
-    static let CellHeight = (300 / CGFloat(GameOfLifeVC.NumberOfCellsPerRow))
+    static let CellHeight = (320 / CGFloat(GameOfLifeVC.NumberOfCellsPerRow))
 
     /// UIView that contains the game board cells
     @IBOutlet weak var gameBoard: UIView! {
