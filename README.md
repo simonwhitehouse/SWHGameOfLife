@@ -22,7 +22,7 @@ The value can be anything from 1 - 320 but 320 will be extremely slow
 
 160 cells
 
-![alt tag](http://pasteboard.co/1f3lNijx.png)
+![alt tag](https://cdn.pbrd.co/images/1f3sZQTs.png)
 
 ## License
 
