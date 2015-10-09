@@ -16,7 +16,7 @@ class GameOfLifeVC: UIViewController {
     var gameOfLife = GameOfLideModel()
     
     /// number of flys per row
-    static let NumberOfCellsPerRow = 100
+    static let NumberOfCellsPerRow = 160
     
     /// size of each fly
     static let CellHeight = (320 / CGFloat(GameOfLifeVC.NumberOfCellsPerRow))
