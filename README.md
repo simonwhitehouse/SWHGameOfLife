@@ -18,7 +18,7 @@ The value can be anything from 1 - 320 but 320 will be extremely slow
 
 160 cells 
 
-![Example](https://j.gifs.com/vJ2Eg8.gif)
+![Example](https://j.gifs.com/vWMgZw.gif)
 
 ## License
 
