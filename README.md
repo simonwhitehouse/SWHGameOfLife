@@ -16,9 +16,13 @@ The value can be anything from 1 - 320 but 320 will be extremely slow
 
 ## Demo
 
-160 cells 
+80 cells 
 
-![Example](https://j.gifs.com/vWMgZw.gif)
+![alt tag](http://pasteboard.co/1f3lNijx.png)
+
+160 cells
+
+![alt tag](http://pasteboard.co/1f3lNijx.png)
 
 ## License
 
