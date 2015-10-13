@@ -6,7 +6,7 @@ Simple project that implemented Conway's game of life in a simple view
 
 ## Usage
 
-To run just project simply download and run on an iOS device
+To run just download and run on an iOS device
 
 To change the amount of cells in the board updating the following property
 
