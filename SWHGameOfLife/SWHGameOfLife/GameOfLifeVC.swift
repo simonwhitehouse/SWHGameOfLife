@@ -11,9 +11,10 @@ import UIKit
 class GameOfLifeVC: UIViewController {
     
     typealias GameBoardViews = Array<Array<LivingView>>
-    var gameCells = GameBoardViews()
     
-    var gameOfLife = GameOfLideModel()
+    var gameCells = GameBoardViews() // gameboardcells
+    
+    var gameOfLife = GameOfLideModel() // game of life model
     
     /// number of flys per row
     static let NumberOfCellsPerRow = 80
